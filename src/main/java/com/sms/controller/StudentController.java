@@ -4,6 +4,9 @@ import com.sms.entity.Student;
 import com.sms.service.StudentService;
 import org.springframework.web.bind.annotation.*;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import java.util.List;
 
 @RestController
@@ -26,6 +29,12 @@ public class StudentController {
     @GetMapping
     public List<Student> getAllStudents() {
         return studentService.getAllStudents();
+    }
+
+    // ✅ PAGINATION (NEW)
+    @GetMapping("/page")
+    public Page<Student> getStudentsWithPagination(Pageable pageable) {
+        return studentService.getStudentsWithPagination(pageable);
     }
 
     // READ BY ID

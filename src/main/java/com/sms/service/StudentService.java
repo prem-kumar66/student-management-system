@@ -4,6 +4,9 @@ import com.sms.entity.Student;
 import com.sms.repository.StudentRepository;
 import org.springframework.stereotype.Service;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -24,6 +27,11 @@ public class StudentService {
     // READ ALL
     public List<Student> getAllStudents() {
         return studentRepository.findAll();
+    }
+
+    // ✅ PAGINATION METHOD (NEW)
+    public Page<Student> getStudentsWithPagination(Pageable pageable) {
+        return studentRepository.findAll(pageable);
     }
 
     // READ BY ID
